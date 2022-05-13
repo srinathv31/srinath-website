@@ -33,8 +33,28 @@ export default function MainMenu(): JSX.Element {
         });
     }, [location]);
 
+    function openMenu() {
+        const burgerMenu = document.getElementById("burger-menu");
+        const burgerMenuText = document.getElementById("burger-menu-text");
+        const menuItems = document.getElementById("menuLinks");
+        if (burgerMenu !== null) {
+            burgerMenu.classList.toggle(styles.change);
+        }
+        if (burgerMenuText !== null) {
+            burgerMenuText.classList.toggle(styles.hide);
+        }
+        if (menuItems !== null) {
+            menuItems.classList.toggle(styles.show);
+        }
+    }
+
     return(
-        <div className={styles.menuHeader}>
+        <div className={styles.menuHeader} id="menuLinks">
+            <div className={styles.burgerContainer} id="burger-menu" onClick={() => openMenu()}>
+                <div className={styles.bar1}></div>
+                <div className={styles.bar2}></div>
+                <div className={styles.bar3}></div>
+            </div>
             <ul>
                 <li>
                     {"Mode: "}<DarkModeToggleSwitch checked={!isDarkModeToggle} onChange={()=> setIsDarkModeToggle(!isDarkModeToggle)} sx={{ m: 1 }}/>
