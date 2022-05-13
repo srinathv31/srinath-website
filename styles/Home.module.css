@@ -17,12 +17,18 @@
     margin-right: 20px;
     margin-left: 20px;
 }
+.selectedLink {
+    color: #52bdf3;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+}
 .menuLink {
     text-decoration: none;
     display: inline-block;
     position: relative;
 }
-.menuLink:after {
+.menuHeader li a:after {
     content: '';
     position: absolute;
     width: 100%;
@@ -34,7 +40,7 @@
     transform-origin: bottom right;
     transition: transform 0.25s ease-out;
 }
-.menuLink:hover:after {
+.menuHeader li a:hover:after {
     transform: scaleX(1);
     transform-origin: bottom left;
 }

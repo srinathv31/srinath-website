@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import styles from "../styles/Home.module.css";
 import { DarkModeToggleSwitch } from "./DarkModeToggleSwitch";
@@ -19,6 +20,20 @@ export default function MainMenu({ menuType }: {
             }
         }
     }, [isDarkModeToggle]);
+
+    const location = useRouter().pathname;
+    // Radio the top menu
+    useEffect(() => {
+        const listElements = document.getElementsByTagName("a");
+        Array.from(listElements).forEach(item => {
+            if (item.className === styles.menuLink || item.className === styles.selectedLink) {
+                item.className = styles.menuLink;
+                if (item.className === styles.menuLink && item.getAttribute("href") === location){
+                    item.className = styles.selectedLink;
+                }
+            }
+        });
+    }, [location]);
 
     return(
         <div className={styles.menuHeader}>
