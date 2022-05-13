@@ -12,9 +12,13 @@ const Home: NextPage = () => {
             </Head>
            
             <main className={styles.main}>
-                <h1>
-                    {"Welcome, "}<a href="https://nextjs.org">Navigate Here</a>
-                </h1>
+                <div>
+                    <h1>
+                        {"Hi, my name is "}<div className={styles.nameHeader}>Srinath Venkatesh</div>
+                    </h1>
+                    <p>Welcome to my website.</p>
+                    <p>I like Developing and Creating new things.</p>
+                </div>
             </main>
 
             
