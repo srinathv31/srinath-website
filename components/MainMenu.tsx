@@ -4,9 +4,7 @@ import { useState, useEffect } from "react";
 import styles from "../styles/Home.module.css";
 import { DarkModeToggleSwitch } from "./DarkModeToggleSwitch";
 
-export default function MainMenu({ menuType }: {
-    menuType: "main-page" | "top-menu"
-}): JSX.Element {
+export default function MainMenu(): JSX.Element {
     const [isDarkModeToggle, setIsDarkModeToggle] = useState<boolean>(false);
     // Dark Mode Toggle
     useEffect(() => {
@@ -38,14 +36,12 @@ export default function MainMenu({ menuType }: {
     return(
         <div className={styles.menuHeader}>
             <ul>
-                {menuType === "top-menu" && 
                 <li>
                     {"Mode: "}<DarkModeToggleSwitch checked={!isDarkModeToggle} onChange={()=> setIsDarkModeToggle(!isDarkModeToggle)} sx={{ m: 1 }}/>
-                </li>}
-                {menuType === "top-menu" && 
+                </li>
                 <li>
                     <Link href={"/"}><a className={styles.menuLink} >Home</a></Link>
-                </li>}
+                </li>
                 <li>
                     <a className={styles.menuLink} href="https://github.com/srinathv31" target={"_blank"} rel="noreferrer">Projects</a>
                 </li>
@@ -56,7 +52,7 @@ export default function MainMenu({ menuType }: {
                     <a className={styles.menuLink} href="https://github.com/srinathv31" target={"_blank"} rel="noreferrer">Github</a>
                 </li>
                 <li>
-                    <Link href={"/hello"}><a className={styles.menuLink} >About</a></Link>
+                    <Link href={"/about"}><a className={styles.menuLink} >About</a></Link>
                 </li>
             </ul>
         </div>

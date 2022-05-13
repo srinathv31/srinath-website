@@ -8,7 +8,7 @@ export default function Layout({ children }: {
 }): JSX.Element {
     return(
         <div className={styles.container}>
-            <MainMenu menuType="top-menu" />
+            <MainMenu />
             <main>{children}</main>
             <Footer />
         </div>
