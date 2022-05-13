@@ -1,25 +1,9 @@
 .container {
   padding: 0 2rem;
-  background-image: url("../assets/layered-waves-haikei.svg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  transition: 300ms;
-}
-.containerLight {
-    padding: 0 2rem;
-    background-image: url("../assets/light-layered-waves-haikei.svg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    color: black;
-    transition: 300ms;
 }
 
 .menuHeader {
     justify-content: center;
-    position: absolute;
-    top: 0;
     display: flex;
 }
 .menuHeader ul {
@@ -55,12 +39,12 @@
     transform-origin: bottom left;
 }
 .main {
-  min-height: 100vh;
+  min-height: 85vh;
   padding: 4rem 0;
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 .background-video {

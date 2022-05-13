@@ -1,9 +1,24 @@
 body {
-  color: #eee;
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+.light {
+    color: #eee;
+    background-image: url("../assets/layered-waves-haikei.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: 300ms;
+}
+.dark {
+    background-image: url("../assets/light-layered-waves-haikei.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: black;
+    transition: 300ms;
 }
 
 a {
