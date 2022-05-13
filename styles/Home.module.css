@@ -5,6 +5,14 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+.containerLight {
+    padding: 0 2rem;
+    background-image: url("../assets/light-layered-waves-haikei.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: black;
+}
 
 .menuHeader {
     justify-content: center;
@@ -24,13 +32,9 @@
     margin-left: 20px;
 }
 .menuLink {
-    color: #eee;
     text-decoration: none;
     display: inline-block;
     position: relative;
-}
-.menuLink:hover{
-    color: #eee;
 }
 .menuLink:after {
     content: '';
