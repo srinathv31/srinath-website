@@ -1,6 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-}
+    reactStrictMode: true,
+    images: {
+        domains: [
+            "upload.wikimedia.org",
+            "i.imgur.com"
+        ],
+    }
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

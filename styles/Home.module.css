@@ -20,12 +20,18 @@
   justify-content: center;
   align-items: center;
 }
-
 .footer a {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-grow: 1;
+}
+.footer ul {
+    list-style: none;
+}
+.footer li {
+    float: left;
+    margin: 10px;
 }
 
 .title a {
@@ -101,11 +107,6 @@
   margin: 0;
   font-size: 1.25rem;
   line-height: 1.5;
-}
-
-.logo {
-  height: 1em;
-  margin-left: 0.5rem;
 }
 
 @media (max-width: 600px) {
