@@ -6,6 +6,48 @@
   background-size: cover;
 }
 
+.menuHeader {
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    display: flex;
+}
+.menuHeader ul {
+    list-style: none;
+    font-size: 30px;
+    font-weight: 300;
+}
+.menuHeader li {
+    display: inline-block;
+    padding: 10px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+.menuLink {
+    color: #eee;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+}
+.menuLink:hover{
+    color: #eee;
+}
+.menuLink:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #35b0ee;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+.menuLink:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
 .main {
   min-height: 100vh;
   padding: 4rem 0;
