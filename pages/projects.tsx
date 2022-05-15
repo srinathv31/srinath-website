@@ -4,7 +4,6 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import ButtonBase from "@mui/material/ButtonBase";
 import Typography from "@mui/material/Typography";
-import { Grid } from "@mui/material";
 import styles from "../styles/Home.module.css";
 
 const images = [
@@ -109,8 +108,9 @@ const ImageMarked = styled("span")(({ theme }) => ({
 
 export default function Projects() {
     return (
-        <div style={{ width: "100%" }} className={styles.main}>
-            <p>All Projects have GitHub links to look at source code.</p>
+        <div style={{ width: "100%" }} className={styles.projects}>
+            <p>These are some of my side projects that I am very <span className={styles.emphasis}>intersted</span> in/learned <span className={styles.emphasis}>skills</span> from.</p>
+            <p style={{ margin: 5 }}>Click on one to learn more about it.</p>
             <Box sx={{ display: "flex", flexWrap: "wrap", minWidth: 300, width: "100%", justifyContent: "space-evenly" }}>
                 {images.map((image) => (
                     <ImageButton

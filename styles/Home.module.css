@@ -129,7 +129,23 @@
     float: left;
     margin: 10px;
 }
-
+.projects {
+    min-height: 85vh;
+    padding: 4rem 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.projects p {
+    font-size: calc(1em + 1vmin);
+    width: "50%";
+    font-weight: 200;
+    text-align: center;
+}
+.emphasis {
+    color: #35b0ee;
+}
 .aboutDescription {
     width: 75%;
     padding: 25px;
