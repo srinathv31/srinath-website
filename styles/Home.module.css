@@ -45,7 +45,7 @@
     transform-origin: bottom left;
 }
 
-@media (max-width: 48em) {
+@media (max-width: 52em) {
     .menuHeader {
         justify-content: flex-start;
     }

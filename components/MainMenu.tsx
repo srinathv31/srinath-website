@@ -64,7 +64,7 @@ export default function MainMenu(): JSX.Element {
                     <Link href={"/"}><a className={styles.menuLink} >Home</a></Link>
                 </li>
                 <li>
-                    <a className={styles.menuLink} href="https://github.com/srinathv31" target={"_blank"} rel="noreferrer">Projects</a>
+                    <Link href={"/projects"}><a className={styles.menuLink} >Projects</a></Link>
                 </li>
                 <li>
                     <a className={styles.menuLink} href="https://github.com/srinathv31" target={"_blank"} rel="noreferrer">Experience</a>
