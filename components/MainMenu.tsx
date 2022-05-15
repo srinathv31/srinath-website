@@ -61,19 +61,19 @@ export default function MainMenu(): JSX.Element {
                     {"Mode: "}<DarkModeToggleSwitch checked={!isDarkModeToggle} onChange={()=> setIsDarkModeToggle(!isDarkModeToggle)} sx={{ m: 1 }}/>
                 </li>
                 <li>
-                    <Link href={"/"}><a className={styles.menuLink} >Home</a></Link>
+                    <Link href={"/"}><a className={styles.menuLink}>Home</a></Link>
                 </li>
                 <li>
-                    <Link href={"/projects"}><a className={styles.menuLink} >Projects</a></Link>
+                    <Link href={"/projects"}><a className={styles.menuLink}>Projects</a></Link>
                 </li>
                 <li>
-                    <a className={styles.menuLink} href="https://github.com/srinathv31" target={"_blank"} rel="noreferrer">Experience</a>
+                    <Link href={"/experience"}><a className={styles.menuLink}>Experience</a></Link>
                 </li>
                 <li>
                     <a className={styles.menuLink} href="https://github.com/srinathv31" target={"_blank"} rel="noreferrer">Github</a>
                 </li>
                 <li>
-                    <Link href={"/about"}><a className={styles.menuLink} >About</a></Link>
+                    <Link href={"/about"}><a className={styles.menuLink}>About</a></Link>
                 </li>
             </ul>
         </div>
