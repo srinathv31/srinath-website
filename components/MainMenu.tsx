@@ -33,6 +33,7 @@ export default function MainMenu(): JSX.Element {
         });
     }, [location]);
 
+    // Open Mobile Menu
     function openMenu() {
         const burgerMenu = document.getElementById("burger-menu");
         const burgerMenuText = document.getElementById("burger-menu-text");
