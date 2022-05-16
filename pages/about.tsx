@@ -15,7 +15,7 @@ export default function About(): JSX.Element {
                         A passionate creator and Founder of Vital. 
                         In order to turn my ideas into realities, I learned technologies such as
                         React / React Native / Typescript / Nodejs. I learned Python and Plotly to
-                        pursue data 
+                        pursue data projects.
                     </p>
                 </div>
             </main>
