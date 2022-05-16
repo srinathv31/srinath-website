@@ -1,11 +1,13 @@
 {
   "name": "srinath-website",
+  "homepage": "https://srinathv31.github.io/srinath-website/",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "deploy": "gh-pages -d build",
     "lint": "next lint"
   },
   "dependencies": {
