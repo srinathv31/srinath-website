@@ -3,11 +3,10 @@ import { deepPurple } from "@mui/material/colors";
 import styles from "../styles/Home.module.css";
 
 export default function About(): JSX.Element {
-    const windowWidth = window.innerWidth;
     return(
         <>
             <main className={styles.main}>
-                <Avatar sx={{ bgcolor: deepPurple[500], width: windowWidth*0.15, height: windowWidth*0.15 }}>SV</Avatar>
+                <Avatar sx={{ bgcolor: deepPurple[500], width: 250, height: 250 }}>SV</Avatar>
                 <div className={styles.aboutDescription}>
                     <h1>
                         {"Hi, again 👋 I'm"}<div className={styles.nameHeader}>Srinath Venkatesh</div>
