@@ -11,31 +11,37 @@ const images = [
         url: "https://i.imgur.com/BkIeqWm.png",
         title: "Vital - iOS and Android App",
         width: "30%",
+        projectLink: "vital"
     },
     {
         url: "https://i.imgur.com/a4f9ORb.png",
         title: "University Degree Planner",
         width: "30%",
+        projectLink: "degree-planner"
     },
     {
         url: "https://i.imgur.com/mkxvGv4.png",
         title: "NBA Team Wins x Vitamin D Correlation Analysis Tool",
         width: "30%",
+        projectLink: "nba-team-analysis"
     },
     {
         url: "https://i.imgur.com/9V25rLf.jpg",
         title: "NBA Role Player Draft Analysis Tool",
         width: "30%",
+        projectLink: "nba-draft-analysis"
     },
     {
         url: "https://i.imgur.com/jbbx8tZ.png",
         title: "Pokemon made with React",
         width: "30%",
+        projectLink: "pokemon"
     },
     {
         url: "https://i.imgur.com/Pv2P5wY.png",
         title: "NBA Data API",
         width: "30%",
+        projectLink: "nba-api"
     },
 ];
 
@@ -113,32 +119,33 @@ export default function Projects() {
             <p style={{ margin: 5 }}>Click on one to learn more about it.</p>
             <Box sx={{ display: "flex", flexWrap: "wrap", minWidth: 300, width: "100%", justifyContent: "space-evenly" }}>
                 {images.map((image) => (
-                    <ImageButton
-                        focusRipple
-                        key={image.title}
-                        style={{
-                            width: image.width,
-                        }}
-                    >
-                        <ImageSrc style={{ backgroundImage: `url(${image.url})` }} />
-                        <ImageBackdrop className="MuiImageBackdrop-root" />
-                        <ProjImage>
-                            <Typography
-                                component="span"
-                                variant="subtitle1"
-                                color="inherit"
-                                sx={{
-                                    position: "relative",
-                                    p: 4,
-                                    pt: 2,
-                                    pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
-                                }}
-                            >
-                                {image.title}
-                                <ImageMarked className="MuiImageMarked-root" />
-                            </Typography>
-                        </ProjImage>
-                    </ImageButton>
+                    <Link key={image.title} href={`projects/${image.projectLink}`}>
+                        <ImageButton
+                            focusRipple
+                            style={{
+                                width: image.width,
+                            }}
+                        >
+                            <ImageSrc style={{ backgroundImage: `url(${image.url})` }} />
+                            <ImageBackdrop className="MuiImageBackdrop-root" />
+                            <ProjImage>
+                                <Typography
+                                    component="span"
+                                    variant="subtitle1"
+                                    color="inherit"
+                                    sx={{
+                                        position: "relative",
+                                        p: 4,
+                                        pt: 2,
+                                        pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
+                                    }}
+                                >
+                                    {image.title}
+                                    <ImageMarked className="MuiImageMarked-root" />
+                                </Typography>
+                            </ProjImage>
+                        </ImageButton>
+                    </Link>
                 ))}
             </Box>
         </div>
