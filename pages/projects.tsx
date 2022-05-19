@@ -11,31 +11,37 @@ const images = [
         url: "https://i.imgur.com/BkIeqWm.png",
         title: "Vital - iOS and Android App",
         width: "30%",
+        projectLink: "https://apps.apple.com/us/app/supplementapp/id1612971376"
     },
     {
         url: "https://i.imgur.com/a4f9ORb.png",
         title: "University Degree Planner",
         width: "30%",
+        projectLink: "https://ud-cisc275-f21.github.io/ud-cis-scheduler-team-12/"
     },
     {
         url: "https://i.imgur.com/mkxvGv4.png",
         title: "NBA Team Wins x Vitamin D Correlation Analysis Tool",
         width: "30%",
+        projectLink: "https://github.com/srinathv31/NBATeamAnalysis"
     },
     {
         url: "https://i.imgur.com/9V25rLf.jpg",
         title: "NBA Role Player Draft Analysis Tool",
         width: "30%",
+        projectLink: "https://github.com/srinathv31/NbaAnalysis"
     },
     {
         url: "https://i.imgur.com/jbbx8tZ.png",
         title: "Pokemon made with React",
         width: "30%",
+        projectLink: "https://github.com/srinathv31/Pokemon-TB-Game"
     },
     {
         url: "https://i.imgur.com/Pv2P5wY.png",
         title: "NBA Data API",
         width: "30%",
+        projectLink: "https://github.com/srinathv31/nba-data-api"
     },
 ];
 
@@ -91,7 +97,7 @@ const ImageBackdrop = styled("span")(({ theme }) => ({
     top: 0,
     bottom: 0,
     backgroundColor: theme.palette.common.black,
-    opacity: 0.55,
+    opacity: 0.35,
     transition: theme.transitions.create("opacity"),
     borderRadius: 10
 }));
@@ -115,29 +121,33 @@ export default function Projects() {
                 {images.map((image) => (
                     <ImageButton
                         focusRipple
-                        key={image.title}
                         style={{
                             width: image.width,
                         }}
+                        key={image.title}
                     >
-                        <ImageSrc style={{ backgroundImage: `url(${image.url})` }} />
-                        <ImageBackdrop className="MuiImageBackdrop-root" />
-                        <ProjImage>
-                            <Typography
-                                component="span"
-                                variant="subtitle1"
-                                color="inherit"
-                                sx={{
-                                    position: "relative",
-                                    p: 4,
-                                    pt: 2,
-                                    pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
-                                }}
-                            >
-                                {image.title}
-                                <ImageMarked className="MuiImageMarked-root" />
-                            </Typography>
-                        </ProjImage>
+                        <a style={{ width: "100%" }} href={image.projectLink} target="_blank" rel="noreferrer">
+
+                            <ImageSrc style={{ backgroundImage: `url(${image.url})` }} />
+                            <ImageBackdrop className="MuiImageBackdrop-root" />
+                            <ProjImage>
+                                <Typography
+                                    component="span"
+                                    variant="subtitle1"
+                                    color="inherit"
+                                    sx={{
+                                        position: "relative",
+                                        p: 4,
+                                        pt: 2,
+                                        pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
+                                    }}
+                                >
+                                    {image.title}
+                                    <ImageMarked className="MuiImageMarked-root" />
+                                </Typography>
+                            </ProjImage>
+                        </a>
+
                     </ImageButton>
                 ))}
             </Box>

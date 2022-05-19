@@ -6,7 +6,7 @@ export default function About(): JSX.Element {
     return(
         <>
             <main className={styles.main}>
-                <Avatar sx={{ bgcolor: deepPurple[500], width: 200, height: 200 }}>SV</Avatar>
+                {/* <Avatar sx={{ bgcolor: deepPurple[500], width: 250, height: 250 }}>SV</Avatar> */}
                 <div className={styles.aboutDescription}>
                     <h1>
                         {"Hi, again 👋 I'm"}<div className={styles.nameHeader}>Srinath Venkatesh</div>
@@ -14,7 +14,7 @@ export default function About(): JSX.Element {
                     <p>
                         A passionate creator and Founder of Vital. 
                         In order to turn my ideas into realities, I learned technologies such as
-                        React / React Native / Typescript / Nodejs. I learned Python and Plotly to
+                        React / React Native / Typescript / Nodejs. I also learned Python and Plotly to
                         pursue data projects.
                     </p>
                 </div>
