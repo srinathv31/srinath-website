@@ -13,7 +13,7 @@ export function FooterLinks() {
     return (
         <div>
             <ul>
-                <li>
+                <li style={{ fontWeight: 300 }}>
                     Powered by:
                 </li>
                 {linkItems.map((item, index) => {
@@ -27,7 +27,14 @@ export function FooterLinks() {
                     );
                 })}
                 <li>
-                    <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
+                    <a href={"https://nextjs.org/"} target="_blank" rel="noreferrer">
+                        <Image src="/Nextjs-logo.svg" alt="Nextjs Logo" width={40} height={25} />
+                    </a>
+                </li>
+                <li>
+                    <a href={"https://vercel.com/"} target="_blank" rel="noreferrer">
+                        <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
+                    </a>
                 </li>
             </ul>
         </div>

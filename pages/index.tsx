@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import SocialIcons from "../components/SocialIcons";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
@@ -23,6 +24,7 @@ const Home: NextPage = () => {
                             <a href="https://github.com/srinathv31/srinath-website" target={"_blank"} rel="noreferrer">source code</a>
                         </span>
                     </p>
+                    {/* <SocialIcons /> */}
                 </div>
             </main>
 

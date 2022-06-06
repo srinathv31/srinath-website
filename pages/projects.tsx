@@ -11,37 +11,37 @@ const images = [
         url: "https://i.imgur.com/BkIeqWm.png",
         title: "Vital - iOS and Android App",
         width: "30%",
-        projectLink: "https://apps.apple.com/us/app/supplementapp/id1612971376"
+        projectLink: "vital"
     },
     {
         url: "https://i.imgur.com/a4f9ORb.png",
         title: "University Degree Planner",
         width: "30%",
-        projectLink: "https://ud-cisc275-f21.github.io/ud-cis-scheduler-team-12/"
+        projectLink: "degree-planner"
     },
     {
         url: "https://i.imgur.com/mkxvGv4.png",
         title: "NBA Team Wins x Vitamin D Correlation Analysis Tool",
         width: "30%",
-        projectLink: "https://github.com/srinathv31/NBATeamAnalysis"
+        projectLink: "nba-team-analysis"
     },
     {
         url: "https://i.imgur.com/9V25rLf.jpg",
         title: "NBA Role Player Draft Analysis Tool",
         width: "30%",
-        projectLink: "https://github.com/srinathv31/NbaAnalysis"
+        projectLink: "nba-draft-analysis"
     },
     {
         url: "https://i.imgur.com/jbbx8tZ.png",
         title: "Pokemon made with React",
         width: "30%",
-        projectLink: "https://github.com/srinathv31/Pokemon-TB-Game"
+        projectLink: "pokemon"
     },
     {
         url: "https://i.imgur.com/Pv2P5wY.png",
         title: "NBA Data API",
         width: "30%",
-        projectLink: "https://github.com/srinathv31/nba-data-api"
+        projectLink: "nba-api"
     },
 ];
 
@@ -119,15 +119,13 @@ export default function Projects() {
             <p style={{ margin: 5 }}>Click on one to learn more about it.</p>
             <Box sx={{ display: "flex", flexWrap: "wrap", minWidth: 300, width: "100%", justifyContent: "space-evenly" }}>
                 {images.map((image) => (
-                    <ImageButton
-                        focusRipple
-                        style={{
-                            width: image.width,
-                        }}
-                        key={image.title}
-                    >
-                        <a style={{ width: "100%" }} href={image.projectLink} target="_blank" rel="noreferrer">
-
+                    <Link key={image.title} href={`projects/${image.projectLink}`}>
+                        <ImageButton
+                            focusRipple
+                            style={{
+                                width: image.width,
+                            }}
+                        >
                             <ImageSrc style={{ backgroundImage: `url(${image.url})` }} />
                             <ImageBackdrop className="MuiImageBackdrop-root" />
                             <ProjImage>
@@ -146,9 +144,8 @@ export default function Projects() {
                                     <ImageMarked className="MuiImageMarked-root" />
                                 </Typography>
                             </ProjImage>
-                        </a>
-
-                    </ImageButton>
+                        </ImageButton>
+                    </Link>
                 ))}
             </Box>
         </div>
