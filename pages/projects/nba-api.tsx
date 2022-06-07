@@ -1,5 +1,4 @@
 import axios from "axios";
-import { InferGetServerSidePropsType } from "next/types";
 import { useEffect, useState } from "react";
 import PlayerCard from "../../components/NbaAPI/PlayerCard";
 import styles from "../../styles/Projects.module.css";

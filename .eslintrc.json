@@ -24,6 +24,7 @@
       "eol-last": [
           "error",
           "always"
-      ]
+      ],
+      "no-unused-vars": "warn"
   }
 }
