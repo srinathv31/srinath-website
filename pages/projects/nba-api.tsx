@@ -1,7 +1,9 @@
 import axios from "axios";
 import { InferGetServerSidePropsType } from "next/types";
 import { useEffect, useState } from "react";
+import PlayerCard from "../../components/NbaAPI/PlayerCard";
 import styles from "../../styles/Projects.module.css";
+import { RosterData } from "../../utilities/interfaces/nbaRoster";
 
 export default function NbaAPI(): JSX.Element {
     const [roster, setRoster] = useState<RosterData>({
@@ -48,10 +50,7 @@ export default function NbaAPI(): JSX.Element {
                 <div className={styles.rightSideInnerAPI}>
                     {Object.keys(roster.players).map((item, index) => {
                         return (
-                            <span key={index}>
-                                <p>{item}</p>
-                                <p>{roster.players[item].PER}</p>
-                            </span>
+                            <PlayerCard key={index} name={item} player={roster.players[item]} />
                         );
                     })}
                 </div>
@@ -59,19 +58,3 @@ export default function NbaAPI(): JSX.Element {
         </div>
     );
 }
-  
-interface RosterData {
-    url: string,
-    players: {
-        [name: string]: {
-            G: string,
-            PER: string,
-            "TS%": string,
-            WS: string,
-            P_G: string,
-            P_PER: string,
-            "P_TS%": string,
-            P_WS: string
-        }
-    }
-};
