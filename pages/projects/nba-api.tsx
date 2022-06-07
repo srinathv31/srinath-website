@@ -39,7 +39,7 @@ export default function NbaAPI(): JSX.Element {
 
     return(
         <div className={styles.nbaAPI}>
-            <h1>This is my API</h1>
+            <h1>This is my NBA Data API in Action</h1>
             
             <div style={{ flexDirection: "row" }}>
                 <div className={styles.leftSideInner}>
