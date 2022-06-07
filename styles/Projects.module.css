@@ -57,9 +57,15 @@
 .rightSideInnerAPI {
     max-height: 50vh;
     min-width: 25vh;
-    border: 1px solid white;
     float: left;
     padding: 50px;
     margin: 50px;
+    text-align: center;
+}
+.rightSideInnerAPI button {
+    margin: 10px;
+}
+.rosterList {
     overflow-y: scroll;
+    max-height: 50vh;
 }

@@ -11,7 +11,7 @@ export default function PlayerCard({ player, name }: {
             <div>{`G: ${player.G} | PER: ${player.PER} | TS%: ${player["TS%"]}`}</div>
             <Divider />
             <div style={{ marginBottom: 5, marginTop: 5 }}>Playoff Stats</div>
-            {player.P_G === undefined 
+            {player.P_G === undefined
                 ? <div>{"P_G: N/A | P_PER: N/A | TS%: N/A"}</div>
                 : <div>{`P_G: ${player.P_G} | P_PER: ${player.P_PER} | TS%: ${player["P_TS%"]}`}</div>}
         </div>
