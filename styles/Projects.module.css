@@ -42,3 +42,24 @@
 .rightSideInner p {
     max-width: 300px;
 }
+
+.nbaAPI {
+    min-height: 85vh;
+    padding: 4rem 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.nbaAPI h1 {
+    font-weight: 200;
+}
+.rightSideInnerAPI {
+    max-height: 50vh;
+    min-width: 25vh;
+    border: 1px solid white;
+    float: left;
+    padding: 50px;
+    margin: 50px;
+    overflow-y: scroll;
+}

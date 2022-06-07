@@ -41,7 +41,7 @@ const images = [
         url: "https://i.imgur.com/Pv2P5wY.png",
         title: "NBA Data API",
         width: "30%",
-        projectLink: "https://github.com/srinathv31/nba-data-api"
+        projectLink: "/nba-api"
     },
 ];
 
@@ -119,15 +119,15 @@ export default function Projects() {
             <p style={{ margin: 5 }}>Click on one to learn more about it.</p>
             <Box sx={{ display: "flex", flexWrap: "wrap", minWidth: 300, width: "100%", justifyContent: "space-evenly" }}>
                 {images.map((image) => (
-                    <ImageButton
-                        focusRipple
-                        style={{
-                            width: image.width,
-                        }}
-                        key={image.title}
+                    <Link key={image.title} 
+                        href={image.title !== "NBA Data API" ? image.projectLink : `projects/${image.projectLink}`}
                     >
-                        <a style={{ width: "100%" }} href={image.projectLink} target="_blank" rel="noreferrer">
-
+                        <ImageButton
+                            focusRipple
+                            style={{
+                                width: image.width,
+                            }}
+                        >
                             <ImageSrc style={{ backgroundImage: `url(${image.url})` }} />
                             <ImageBackdrop className="MuiImageBackdrop-root" />
                             <ProjImage>
@@ -146,9 +146,8 @@ export default function Projects() {
                                     <ImageMarked className="MuiImageMarked-root" />
                                 </Typography>
                             </ProjImage>
-                        </a>
-
-                    </ImageButton>
+                        </ImageButton>
+                    </Link>
                 ))}
             </Box>
         </div>
