@@ -60,6 +60,8 @@
     float: left;
     padding: 50px;
     margin: 50px;
+    padding-top: 0;
+    margin-top: 0;
     text-align: center;
 }
 .rightSideInnerAPI button {

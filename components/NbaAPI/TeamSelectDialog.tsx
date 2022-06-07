@@ -11,18 +11,19 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { FaBasketballBall } from "react-icons/fa";
+import { getRosterDataAPI } from "../../utilities/apiFunctions/nbaDataAPI";
+import { RosterData } from "../../utilities/interfaces/nbaRoster";
 
-export default function DialogSelect({ setTeam, team, setYear, year }: {
-    // eslint-disable-next-line no-unused-vars
+export default function DialogSelect({ setTeam, team, setYear, year, setRoster }: {
     setTeam: (t: string) => void, team: string,
-    // eslint-disable-next-line no-unused-vars
-    setYear: (y: string) => void, year: string
+    setYear: (y: string) => void, year: string,
+    setRoster: (r: RosterData) => void
 }) {
     const [open, setOpen] = useState(false);
     const [teamYear, setTeamYear] = useState<{ team: string, year: string }>({ team: team, year: year });
 
     const team_list = ["ATLANTA HAWKS", "BOSTON CELTICS", "BROOKLYN NETS", "CHARLOTTE HORNETS", "CHICAGO BULLS", "CLEVELAND CAVALIERS", "DALLAS MAVERICKS", "DENVER NUGGETS", "DETROIT PISTONS", "GOLDEN STATE WARRIORS", "HOUSTON ROCKETS", "INDIANA PACERS", "LOS ANGELES CLIPPERS", "LOS ANGELES LAKERS", "MEMPHIS GRIZZLIES", "MIAMI HEAT", "MILWAUKEE BUCKS", "MINNESOTA TIMBERWOLVES", "NEW ORLEANS PELICANS", "NEW YORK KNICKS", "OKLAHOMA CITY THUNDER", "ORLANDO MAGIC", "PHILADELPHIA 76ERS", "PHOENIX SUNS", "PORTLAND TRAIL BLAZERS", "SACRAMENTO KINGS", "SAN ANTONIO SPURS", "TORONTO RAPTORS", "UTAH JAZZ", "WASHINGTON WIZARDS"];
-    const yearList = Array.from({ length: 45 }, (_, i) => i + 1977);
+    const yearList = Array.from({ length: 46 }, (_, i) => i + 1977);
 
     const handleTeam = (event: SelectChangeEvent<typeof team>) => {
         setTeamYear({ team: ""+event.target.value, year: teamYear.year });
@@ -43,6 +44,7 @@ export default function DialogSelect({ setTeam, team, setYear, year }: {
     };
     
     const handleGet = () => {
+        getRosterDataAPI(setRoster, teamYear.year, teamYear.team);
         setTeam(teamYear.team);
         setYear(teamYear.year);
         setOpen(false);
