@@ -76,35 +76,3 @@ export async function getServerSideProps() {
     // Pass data to the page via props
     return { props: { data } };
 }
-
-// NodeJS HTTP Implementation
-/*
-const http = require("https");
-
-const options = {
-	"method": "GET",
-	"hostname": "1977-2022-nba-team-rosters-and-schedules.p.rapidapi.com",
-	"port": null,
-	"path": "/elements/LOS%20ANGELES%20LAKERS/2010",
-	"headers": {
-		"X-RapidAPI-Host": "1977-2022-nba-team-rosters-and-schedules.p.rapidapi.com",
-		"X-RapidAPI-Key": "c0b14705ddmshe3175ea352cb808p17750fjsn3d9fcaa205f9",
-		"useQueryString": true
-	}
-};
-
-const req = http.request(options, function (res) {
-	const chunks = [];
-
-	res.on("data", function (chunk) {
-		chunks.push(chunk);
-	});
-
-	res.on("end", function () {
-		const body = Buffer.concat(chunks);
-		console.log(body.toString());
-	});
-});
-
-req.end();
-*/
