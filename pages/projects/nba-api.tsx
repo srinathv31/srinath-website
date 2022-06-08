@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import NoDataCard from "../../components/NbaAPI/NoDataCard";
 import PlayerCard from "../../components/NbaAPI/PlayerCard";
-import TeamButtonSelect from "../../components/NbaAPI/TeamRosterLabel";
+import TeamRosterLabel from "../../components/NbaAPI/TeamRosterLabel";
 import TeamSelectDialog from "../../components/NbaAPI/TeamSelectDialog";
 import styles from "../../styles/Projects.module.css";
 import { getRosterDataAPI, getScheduleDataAPI } from "../../utilities/apiFunctions/nbaDataAPI";
@@ -40,7 +40,7 @@ export default function NbaAPI(): JSX.Element {
                         setSchedule={setSchedule}
                     ></TeamSelectDialog>
                     <div style={{ flexDirection: "row" }}>
-                        <TeamButtonSelect team={team} year={year}/>
+                        <TeamRosterLabel team={team} year={year}/>
                     </div>
                     {roster.players !== undefined ? 
                         <div className={styles.rosterList}>
