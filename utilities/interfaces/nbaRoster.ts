@@ -36,3 +36,16 @@ export interface Game {
     "L": string,
     "Streak": string,
 }
+
+export interface FranchiseYearData {
+    Roster: RosterData,
+    Schedule: ScheduleData
+}
+
+export interface FranchiseHistoryData {
+    [year: string]: FranchiseYearData
+}
+
+export interface NBAHistoryData {
+    [team: string]: FranchiseHistoryData
+}

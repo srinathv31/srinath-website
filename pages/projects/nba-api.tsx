@@ -1,31 +1,26 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import NoDataCard from "../../components/NbaAPI/NoDataCard";
 import PlayerCard from "../../components/NbaAPI/PlayerCard";
 import TeamRosterLabel from "../../components/NbaAPI/TeamRosterLabel";
 import TeamSelectDialog from "../../components/NbaAPI/TeamSelectDialog";
 import styles from "../../styles/Projects.module.css";
-import { getRosterDataAPI, getScheduleDataAPI } from "../../utilities/apiFunctions/nbaDataAPI";
-import { initialRoster, initialSchedule } from "../../utilities/initializers/nbaAPIInitializers";
-import { RosterData, ScheduleData } from "../../utilities/interfaces/nbaRoster";
+import { FranchiseYearData, RosterData, ScheduleData } from "../../utilities/interfaces/nbaRoster";
 import GraphSelector from "../../components/NbaAPI/GraphSelector";
 
-export default function NbaAPI(): JSX.Element {
+export default function NbaAPI({ data }: {
+    data: FranchiseYearData
+}): JSX.Element {
     const [team, setTeam] = useState<string>("LOS ANGELES LAKERS");
     const [year, setYear] = useState<string>("2010");
-    const [roster, setRoster] = useState<RosterData>(initialRoster);
-    const [schedule, setSchedule] = useState<ScheduleData>(initialSchedule);
-
-    useEffect(() => {
-        getRosterDataAPI(setRoster, "2010", "LOS ANGELES LAKERS");
-        getScheduleDataAPI(setSchedule, "2010", "LOS ANGELES LAKERS");
-    }, []);
+    const [roster, setRoster] = useState<RosterData>(data.Roster);
+    const [schedule, setSchedule] = useState<ScheduleData>(data.Schedule);
 
     return(
         <div className={styles.nbaAPI}>
             <h1>This is my NBA Data API in Action</h1>
             <div style={{ flexDirection: "row" }}>
                 <div className={styles.leftSideInnerAPI}>
-                    { schedule.games !== undefined ? 
+                    {schedule !== undefined && schedule.games !== undefined ? 
                         <GraphSelector schedule={schedule} roster={roster}/> :
                         <h1>No Data to Show</h1>
                     }
@@ -39,10 +34,8 @@ export default function NbaAPI(): JSX.Element {
                         setRoster={setRoster}
                         setSchedule={setSchedule}
                     ></TeamSelectDialog>
-                    <div style={{ flexDirection: "row" }}>
-                        <TeamRosterLabel team={team} year={year}/>
-                    </div>
-                    {roster.players !== undefined ? 
+                    <TeamRosterLabel team={team} year={year}/>
+                    {roster !== undefined && roster.players !== undefined ? 
                         <div className={styles.rosterList}>
                             {Object.keys(roster.players).map((item, index) => {
                                 return (
@@ -58,4 +51,24 @@ export default function NbaAPI(): JSX.Element {
             </div>
         </div>
     );
+}
+
+// This gets called on every request
+export async function getServerSideProps() {
+    const initialURL = "https://1977-2022-nba-team-rosters-and-schedules.p.rapidapi.com/elements/LOS%20ANGELES%20LAKER/2010";
+
+    // Fetch data from NBA API
+    const headerKeys = new Headers({
+        "X-RapidAPI-Host": "1977-2022-nba-team-rosters-and-schedules.p.rapidapi.com",
+        "X-RapidAPI-Key": "c0b14705ddmshe3175ea352cb808p17750fjsn3d9fcaa205f9"
+    });
+    
+    const res = await fetch(initialURL, {
+        method: "GET",
+        headers: headerKeys
+    });
+    const data = await res.json() as FranchiseYearData;
+
+    // Pass data to the page via props
+    return { props: { data } };
 }
