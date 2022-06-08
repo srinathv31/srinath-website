@@ -26,7 +26,7 @@ export default function NbaAPI(): JSX.Element {
             <div style={{ flexDirection: "row" }}>
                 <div className={styles.leftSideInnerAPI}>
                     { schedule.games !== undefined ? 
-                        <GraphSelector schedule={schedule}/> :
+                        <GraphSelector schedule={schedule} roster={roster}/> :
                         <h1>No Data to Show</h1>
                     }
                 </div>

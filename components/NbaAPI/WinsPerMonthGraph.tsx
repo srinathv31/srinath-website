@@ -1,14 +1,14 @@
-import { Bar, BarChart, CartesianGrid, Legend, Line, LineChart, Tooltip, XAxis, YAxis } from "recharts";
+import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from "recharts";
 import { ScheduleData } from "../../utilities/interfaces/nbaRoster";
 
 function calculateMonthlyWins(schedule: ScheduleData) {
     const scheduleMonthlyData: { "month": string, "W": number, "L": number }[] = [];
-    Object.keys(schedule.games).forEach(game => {
-        const gameMonth = schedule.games[game]["Date"].substring(5,8);
+    Object.values(schedule.games).forEach(game => {
+        const gameMonth = game["Date"].substring(5,8);
         if (!scheduleMonthlyData.find(item => item.month === gameMonth)) {
             scheduleMonthlyData.push({ "month": gameMonth, "W": 0, "L": 0 });
         }
-        const gameResult: "W" | "L" = schedule.games[game]["Result"] as "W" | "L";
+        const gameResult: "W" | "L" = game["Result"] as "W" | "L";
         scheduleMonthlyData[scheduleMonthlyData.length - 1][gameResult]++;
     });
     return scheduleMonthlyData;

@@ -55,7 +55,7 @@ export default function DialogSelect({ setTeam, team, setYear, year, setRoster, 
     return (
         <div>
             <Button onClick={handleClickOpen} variant="contained" color="success" endIcon={<FaBasketballBall />}>
-                Select Team Roster
+                Select Team Roster/Data
             </Button>
             <Dialog disableEscapeKeyDown open={open} onClose={handleClose}>
                 <DialogTitle>{"Select the Franchise and the Year's Roster you want to see"}</DialogTitle>

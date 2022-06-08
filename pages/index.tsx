@@ -19,8 +19,8 @@ const Home: NextPage = () => {
                     </h1>
                     <p>Welcome to my website.</p>
                     <p>I like Developing and Creating new things.</p>
-                    <p>
-                        {"Click here to view this website's "}<span className={styles.nameHeader}>
+                    <p style={{ maxWidth: 600 }}>
+                        {"This website was made with NextJS, Typescript, and NodeJS. Click here to view this website's "}<span className={styles.nameHeader}>
                             <a href="https://github.com/srinathv31/srinath-website" target={"_blank"} rel="noreferrer">source code</a>
                         </span>
                     </p>

@@ -1,20 +1,23 @@
 import { Button, ButtonGroup } from "@mui/material";
 import dynamic from "next/dynamic";
 import { useState } from "react";
-import { ScheduleData } from "../../utilities/interfaces/nbaRoster";
+import { RosterData, ScheduleData } from "../../utilities/interfaces/nbaRoster";
+import PlayerPERGraph from "./PlayerPERGraph";
 import WinsTotalGraph from "./WinsTotalGraph";
 const WinsPerMonthGraph = dynamic(() => import("../../components/NbaAPI/WinsPerMonthGraph"), {
     ssr: false,
 });
 
-export default function GraphSelector({ schedule }: {
-    schedule: ScheduleData
+export default function GraphSelector({ schedule, roster }: {
+    schedule: ScheduleData,
+    roster: RosterData
 }): JSX.Element {
-    const [graphType, setGraphType] = useState<JSX.Element>(<WinsPerMonthGraph schedule={schedule} />);
+    const [graphType, setGraphType] = useState<number>(1);
 
-    const buttonList: { name: string, graph: JSX.Element }[] = [
-        { name: "Monthly Wins", graph: <WinsPerMonthGraph schedule={schedule} /> },
-        { name: "Total Wins", graph: <WinsTotalGraph schedule={schedule}/> }
+    const buttonList: { name: string, graph: number }[] = [
+        { name: "Monthly Wins", graph: 1 },
+        { name: "Total Wins", graph: 2 },
+        { name: "Player PER", graph: 3 }
     ];
 
     return(
@@ -26,7 +29,9 @@ export default function GraphSelector({ schedule }: {
                     );
                 })}
             </ButtonGroup>
-            {graphType}
+            {graphType === 1 && <WinsPerMonthGraph schedule={schedule} />}
+            {graphType === 2 && <WinsTotalGraph schedule={schedule}/>}
+            {graphType === 3 && <PlayerPERGraph roster={roster}/>}
         </>
     );
 }
