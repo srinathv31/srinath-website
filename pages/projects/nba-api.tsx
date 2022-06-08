@@ -6,6 +6,7 @@ import TeamSelectDialog from "../../components/NbaAPI/TeamSelectDialog";
 import styles from "../../styles/Projects.module.css";
 import { FranchiseYearData, RosterData, ScheduleData } from "../../utilities/interfaces/nbaRoster";
 import GraphSelector from "../../components/NbaAPI/GraphSelector";
+import axios from "axios";
 
 export default function NbaAPI({ data }: {
     data: FranchiseYearData
@@ -55,20 +56,55 @@ export default function NbaAPI({ data }: {
 
 // This gets called on every request
 export async function getServerSideProps() {
-    const initialURL = "https://1977-2022-nba-team-rosters-and-schedules.p.rapidapi.com/elements/LOS%20ANGELES%20LAKER/2010";
-
-    // Fetch data from NBA API
-    const headerKeys = new Headers({
-        "X-RapidAPI-Host": "1977-2022-nba-team-rosters-and-schedules.p.rapidapi.com",
-        "X-RapidAPI-Key": "c0b14705ddmshe3175ea352cb808p17750fjsn3d9fcaa205f9"
-    });
-    
-    const res = await fetch(initialURL, {
+    const options = {
         method: "GET",
-        headers: headerKeys
+        url: "https://1977-2022-nba-team-rosters-and-schedules.p.rapidapi.com/elements/LOS%20ANGELES%20LAKERS/2010",
+        headers: {
+            "X-RapidAPI-Host": "1977-2022-nba-team-rosters-and-schedules.p.rapidapi.com",
+            "X-RapidAPI-Key": "c0b14705ddmshe3175ea352cb808p17750fjsn3d9fcaa205f9"
+        }
+    };
+    const dataGet = axios.request(options).then(response => {
+        console.log(response.data);
+        return(response.data as FranchiseYearData);
+    }).catch(function (error) {
+        console.error(error);
     });
-    const data = await res.json() as FranchiseYearData;
+
+    const data = await Promise.resolve(dataGet) as FranchiseYearData;
 
     // Pass data to the page via props
     return { props: { data } };
 }
+
+// NodeJS HTTP Implementation
+/*
+const http = require("https");
+
+const options = {
+	"method": "GET",
+	"hostname": "1977-2022-nba-team-rosters-and-schedules.p.rapidapi.com",
+	"port": null,
+	"path": "/elements/LOS%20ANGELES%20LAKERS/2010",
+	"headers": {
+		"X-RapidAPI-Host": "1977-2022-nba-team-rosters-and-schedules.p.rapidapi.com",
+		"X-RapidAPI-Key": "c0b14705ddmshe3175ea352cb808p17750fjsn3d9fcaa205f9",
+		"useQueryString": true
+	}
+};
+
+const req = http.request(options, function (res) {
+	const chunks = [];
+
+	res.on("data", function (chunk) {
+		chunks.push(chunk);
+	});
+
+	res.on("end", function () {
+		const body = Buffer.concat(chunks);
+		console.log(body.toString());
+	});
+});
+
+req.end();
+*/
