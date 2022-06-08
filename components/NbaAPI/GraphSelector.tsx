@@ -25,7 +25,7 @@ export default function GraphSelector({ schedule, roster }: {
             <ButtonGroup variant="contained" aria-label="outlined primary button group">
                 {buttonList.map((item, index) => {
                     return (
-                        <Button onClick={() => setGraphType(item.graph)} key={index}>{item.name}</Button>
+                        <Button color={ graphType === item.graph ? "warning" : "primary"} onClick={() => setGraphType(item.graph)} key={index}>{item.name}</Button>
                     );
                 })}
             </ButtonGroup>
