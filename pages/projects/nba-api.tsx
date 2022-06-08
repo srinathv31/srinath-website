@@ -4,39 +4,29 @@ import NoDataCard from "../../components/NbaAPI/NoDataCard";
 import PlayerCard from "../../components/NbaAPI/PlayerCard";
 import TeamButtonSelect from "../../components/NbaAPI/TeamRosterLabel";
 import TeamSelectDialog from "../../components/NbaAPI/TeamSelectDialog";
+import WinsTotalGraph from "../../components/NbaAPI/WinsTotalGraph";
 import styles from "../../styles/Projects.module.css";
-import { getRosterDataAPI } from "../../utilities/apiFunctions/nbaDataAPI";
-import { RosterData } from "../../utilities/interfaces/nbaRoster";
+import { getRosterDataAPI, getScheduleDataAPI } from "../../utilities/apiFunctions/nbaDataAPI";
+import { initialRoster, initialSchedule } from "../../utilities/initializers/nbaAPIInitializers";
+import { RosterData, ScheduleData } from "../../utilities/interfaces/nbaRoster";
 
 export default function NbaAPI(): JSX.Element {
     const [team, setTeam] = useState<string>("LOS ANGELES LAKERS");
     const [year, setYear] = useState<string>("2010");
-    const [roster, setRoster] = useState<RosterData>({
-        url: "google.com",
-        players: {
-            "Bill": {
-                G: "18",
-                PER: "10.2",
-                "TS%": ".406",
-                WS: "0.5",
-                P_G: "25",
-                P_PER: "8.2",
-                "P_TS%": ".545",
-                P_WS: "0.7"
-            }
-        }
-    });
+    const [roster, setRoster] = useState<RosterData>(initialRoster);
+    const [schedule, setSchedule] = useState<ScheduleData>(initialSchedule);
 
     useEffect(() => {
         getRosterDataAPI(setRoster, "2010", "LOS ANGELES LAKERS");
+        getScheduleDataAPI(setSchedule, "2010", "LOS ANGELES LAKERS");
     }, []);
 
     return(
         <div className={styles.nbaAPI}>
             <h1>This is my NBA Data API in Action</h1>
             <div style={{ flexDirection: "row" }}>
-                <div className={styles.leftSideInner}>
-                    <p>App Store Link</p>
+                <div className={styles.leftSideInnerAPI}>
+                    <WinsTotalGraph schedule={schedule}/>
                 </div>
                 <div className={styles.rightSideInnerAPI}>
                     <TeamSelectDialog
@@ -45,6 +35,7 @@ export default function NbaAPI(): JSX.Element {
                         setTeam={setTeam}
                         team={team}
                         setRoster={setRoster}
+                        setSchedule={setSchedule}
                     ></TeamSelectDialog>
                     <div style={{ flexDirection: "row" }}>
                         <TeamButtonSelect team={team} year={year}/>

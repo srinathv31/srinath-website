@@ -11,13 +11,14 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { FaBasketballBall } from "react-icons/fa";
-import { getRosterDataAPI } from "../../utilities/apiFunctions/nbaDataAPI";
-import { RosterData } from "../../utilities/interfaces/nbaRoster";
+import { getRosterDataAPI, getScheduleDataAPI } from "../../utilities/apiFunctions/nbaDataAPI";
+import { RosterData, ScheduleData } from "../../utilities/interfaces/nbaRoster";
 
-export default function DialogSelect({ setTeam, team, setYear, year, setRoster }: {
+export default function DialogSelect({ setTeam, team, setYear, year, setRoster, setSchedule }: {
     setTeam: (t: string) => void, team: string,
     setYear: (y: string) => void, year: string,
-    setRoster: (r: RosterData) => void
+    setRoster: (r: RosterData) => void,
+    setSchedule: (s: ScheduleData) => void
 }) {
     const [open, setOpen] = useState(false);
     const [teamYear, setTeamYear] = useState<{ team: string, year: string }>({ team: team, year: year });
@@ -45,6 +46,7 @@ export default function DialogSelect({ setTeam, team, setYear, year, setRoster }
     
     const handleGet = () => {
         getRosterDataAPI(setRoster, teamYear.year, teamYear.team);
+        getScheduleDataAPI(setSchedule, teamYear.year, teamYear.team);
         setTeam(teamYear.team);
         setYear(teamYear.year);
         setOpen(false);

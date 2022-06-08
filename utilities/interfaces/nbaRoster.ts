@@ -16,3 +16,23 @@ export interface RosterData {
     }
 };
 
+export interface ScheduleData {
+    url: string,
+    games: {
+        [num: string]: Game
+    }
+}
+
+export interface Game {
+    "Date": string,
+    "Start (ET)": string,
+    "Box Score": string,
+    "Location": string,
+    "Opponent": string,
+    "Result": string,
+    "PtsFor": string,
+    "PtsOpp": string,
+    "W": string,
+    "L": string,
+    "Streak": string,
+}
