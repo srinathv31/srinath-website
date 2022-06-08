@@ -1,14 +1,13 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import NoDataCard from "../../components/NbaAPI/NoDataCard";
 import PlayerCard from "../../components/NbaAPI/PlayerCard";
 import TeamButtonSelect from "../../components/NbaAPI/TeamRosterLabel";
 import TeamSelectDialog from "../../components/NbaAPI/TeamSelectDialog";
-import WinsTotalGraph from "../../components/NbaAPI/WinsTotalGraph";
 import styles from "../../styles/Projects.module.css";
 import { getRosterDataAPI, getScheduleDataAPI } from "../../utilities/apiFunctions/nbaDataAPI";
 import { initialRoster, initialSchedule } from "../../utilities/initializers/nbaAPIInitializers";
 import { RosterData, ScheduleData } from "../../utilities/interfaces/nbaRoster";
+import GraphSelector from "../../components/NbaAPI/GraphSelector";
 
 export default function NbaAPI(): JSX.Element {
     const [team, setTeam] = useState<string>("LOS ANGELES LAKERS");
@@ -26,7 +25,10 @@ export default function NbaAPI(): JSX.Element {
             <h1>This is my NBA Data API in Action</h1>
             <div style={{ flexDirection: "row" }}>
                 <div className={styles.leftSideInnerAPI}>
-                    <WinsTotalGraph schedule={schedule}/>
+                    { schedule.games !== undefined ? 
+                        <GraphSelector schedule={schedule}/> :
+                        <h1>No Data to Show</h1>
+                    }
                 </div>
                 <div className={styles.rightSideInnerAPI}>
                     <TeamSelectDialog
