@@ -18,7 +18,11 @@ export default function NbaAPI({ data }: {
 
     return(
         <div className={styles.nbaAPI}>
-            <h1>This is my NBA Data API in Action</h1>
+            <h1>
+                This is my NBA Data API in Action: 
+                <a href="https://github.com/srinathv31/nba-data-api" target={"_blank"} rel="noreferrer"><span className={styles.gitLink}>{" Source Code"}</span></a>
+                <a href="https://rapidapi.com/happysvstudio/api/1977-2022-nba-team-rosters-and-schedules/" target={"_blank"} rel="noreferrer"><span className={styles.apiLink}>{" RapidAPI.com"}</span></a>
+            </h1>
             <div style={{ flexDirection: "row" }}>
                 <div className={styles.leftSideInnerAPI}>
                     {schedule !== undefined && schedule.games !== undefined ? 
@@ -67,7 +71,7 @@ export async function getServerSideProps() {
     const dataGet = axios.request(options).then(response => {
         console.log(response.data);
         return(response.data as FranchiseYearData);
-    }).catch(function (error) {
+    }).catch(error => {
         console.error(error);
     });
 
