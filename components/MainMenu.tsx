@@ -1,12 +1,14 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useEffect, useContext } from "react";
 import styles from "../styles/Home.module.css";
 import { DarkModeToggleSwitch } from "./DarkModeToggleSwitch";
 import { FaGithub } from "react-icons/fa";
+import { globalPropsContext } from "./ContextHooks/GlobalPropsContext";
 
 export default function MainMenu(): JSX.Element {
-    const [isDarkModeToggle, setIsDarkModeToggle] = useState<boolean>(false);
+    const { setIsDarkModeToggle, isDarkModeToggle } = useContext(globalPropsContext);
+
     // Dark Mode Toggle
     useEffect(() => {
         const mainPage = document.getElementsByTagName("body");
