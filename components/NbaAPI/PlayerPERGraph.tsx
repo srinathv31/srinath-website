@@ -1,5 +1,7 @@
+import { useContext } from "react";
 import { Bar, BarChart, Legend, Tooltip, XAxis, YAxis } from "recharts";
 import { RosterData } from "../../utilities/interfaces/nbaRoster";
+import { globalPropsContext } from "../ContextHooks/GlobalPropsContext";
 
 function calculateTeamPER(roster: RosterData) {
     const teamPERData: { "name": string, "PER": number }[] = [];
@@ -13,7 +15,9 @@ export default function WinsTotalGraph({ roster }: {
     roster: RosterData
 }): JSX.Element {
     const data = calculateTeamPER(roster);
-
+    const { isDarkModeToggle } = useContext(globalPropsContext);
+    const graphAxisColor = !isDarkModeToggle ? "whitesmoke" : "#5d5d5d";
+    
     return(
         <>
             <h2 style={{ fontWeight: 300 }}>Player PER Ratings</h2>
@@ -32,8 +36,8 @@ export default function WinsTotalGraph({ roster }: {
                         <stop offset="1" stopColor="#AF4BCE" />
                     </linearGradient>
                 </defs>
-                <XAxis dataKey="name"/>
-                <YAxis />
+                <XAxis dataKey="name" stroke={graphAxisColor}/>
+                <YAxis stroke={graphAxisColor}/>
                 <Tooltip labelStyle={{ color: "black" }} itemStyle={{ color: "#AF4BCE" }} />
                 <Legend />
                 <Bar dataKey="PER" fill="url(#colorUv)" />

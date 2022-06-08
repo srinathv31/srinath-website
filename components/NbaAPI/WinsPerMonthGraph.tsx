@@ -1,5 +1,7 @@
+import { useContext } from "react";
 import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from "recharts";
 import { ScheduleData } from "../../utilities/interfaces/nbaRoster";
+import { globalPropsContext } from "../ContextHooks/GlobalPropsContext";
 
 function calculateMonthlyWins(schedule: ScheduleData) {
     const scheduleMonthlyData: { "month": string, "W": number, "L": number }[] = [];
@@ -18,14 +20,16 @@ export default function WinsTotalGraph({ schedule }: {
     schedule: ScheduleData
 }): JSX.Element {
     const data = calculateMonthlyWins(schedule);
-
+    const { isDarkModeToggle } = useContext(globalPropsContext);
+    const graphAxisColor = !isDarkModeToggle ? "whitesmoke" : "#5d5d5d";
+    
     return(
         <>
             <h2 style={{ fontWeight: 300 }}>Monthly Win Totals + Playoffs</h2>
             <BarChart width={600} height={350} data={data}>
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="month" />
-                <YAxis />
+                <XAxis dataKey="month" stroke={graphAxisColor}/>
+                <YAxis stroke={graphAxisColor}/>
                 <Tooltip labelStyle={{ color: "black" }} />
                 <Legend />
                 <Bar dataKey="W" fill="#19AADE" />
