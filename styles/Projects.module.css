@@ -80,17 +80,3 @@
     margin-top: 0;
     text-align: center;
 }
-.gitLink {
-    color: #35b0ee;
-    transition: 300ms;
-}
-.gitLink:hover {
-    color: #2d6079;
-}
-.apiLink {
-    color: #ee5735;
-    transition: 300ms;
-}
-.apiLink:hover {
-    color: #561d11;
-}
