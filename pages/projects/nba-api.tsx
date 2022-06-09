@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NoDataCard from "../../components/NbaAPI/NoDataCard";
 import PlayerCard from "../../components/NbaAPI/PlayerCard";
 import TeamRosterLabel from "../../components/NbaAPI/TeamRosterLabel";
@@ -59,7 +59,7 @@ export default function NbaAPI({ data }: {
 }
 
 // This gets called on every request
-export async function getServerSideProps() {
+export async function getStaticProps() {
     const options = {
         method: "GET",
         url: "https://1977-2022-nba-team-rosters-and-schedules.p.rapidapi.com/elements/LOS%20ANGELES%20LAKERS/2010",
@@ -68,14 +68,12 @@ export async function getServerSideProps() {
             "X-RapidAPI-Key": "c0b14705ddmshe3175ea352cb808p17750fjsn3d9fcaa205f9"
         }
     };
-    const dataGet = axios.request(options).then(response => {
+    const data = await axios.request(options).then(response => {
         console.log(response.data);
         return(response.data as FranchiseYearData);
     }).catch(error => {
         console.error(error);
     });
-
-    const data = await Promise.resolve(dataGet) as FranchiseYearData;
 
     // Pass data to the page via props
     return { props: { data } };
