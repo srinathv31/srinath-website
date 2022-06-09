@@ -41,7 +41,7 @@ const images = [
         url: "https://i.imgur.com/Pv2P5wY.png",
         title: "NBA Data API",
         width: "30%",
-        projectLink: "/nba-api"
+        projectLink: "nba-api"
     },
 ];
 
