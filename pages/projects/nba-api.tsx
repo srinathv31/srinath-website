@@ -7,7 +7,6 @@ import styles from "../../styles/Projects.module.css";
 import { FranchiseYearData, RosterData, ScheduleData } from "../../utilities/interfaces/nbaRoster";
 import GraphSelector from "../../components/NbaAPI/GraphSelector";
 import axios from "axios";
-import { nbaRapidHost, nbaRapidKey } from "../../utilities/secretAPIKeys/nbaDataKey";
 
 export default function NbaAPI({ data }: {
     data: FranchiseYearData
@@ -61,8 +60,8 @@ export async function getServerSideProps() {
         method: "GET",
         url: "https://1977-2022-nba-team-rosters-and-schedules.p.rapidapi.com/elements/LOS%20ANGELES%20LAKERS/2010",
         headers: {
-            "X-RapidAPI-Host": nbaRapidHost,
-            "X-RapidAPI-Key": nbaRapidKey
+            "X-RapidAPI-Host": "1977-2022-nba-team-rosters-and-schedules.p.rapidapi.com",
+            "X-RapidAPI-Key": "c0b14705ddmshe3175ea352cb808p17750fjsn3d9fcaa205f9"
         }
     };
     const dataGet = axios.request(options).then(response => {
