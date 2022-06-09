@@ -18,16 +18,16 @@ export default function NbaAPI({ data }: {
 
     return(
         <div className={styles.nbaAPI}>
-            <h1>This is my NBA Data API in Action</h1>
+            <h1>
+                This is my NBA Data API in Action
+                <a href="https://github.com/srinathv31/nba-data-api" target={"_blank"} rel="noreferrer"><span className={styles.gitLink}>{" Source Code"}</span></a>
+                <a href="https://rapidapi.com/happysvstudio/api/1977-2022-nba-team-rosters-and-schedules/" target={"_blank"} rel="noreferrer"><span className={styles.apiLink}>{" RapidAPI.com"}</span></a>
+            </h1>
             <div style={{ flexDirection: "row" }}>
                 <div className={styles.leftSideInnerAPI}>
                     {schedule !== undefined && schedule.games !== undefined ? 
                         <GraphSelector schedule={schedule} roster={roster}/> :
-                        <h1>
-                            No Data to Show
-                            <a href="https://github.com/srinathv31/nba-data-api" target={"_blank"} rel="noreferrer"><span className={styles.gitLink}>{" Source Code"}</span></a>
-                            <a href="https://rapidapi.com/happysvstudio/api/1977-2022-nba-team-rosters-and-schedules/" target={"_blank"} rel="noreferrer"><span className={styles.apiLink}>{" RapidAPI.com"}</span></a>
-                        </h1>
+                        <h1>No Data to Show</h1>
                     }
                 </div>
                 <div className={styles.rightSideInnerAPI}>
