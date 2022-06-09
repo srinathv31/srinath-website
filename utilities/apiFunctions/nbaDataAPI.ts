@@ -1,13 +1,14 @@
 import axios from "axios";
 import { RosterData, ScheduleData } from "../interfaces/nbaRoster";
+import { nbaRapidHost, nbaRapidKey } from "../secretAPIKeys/nbaDataKey";
 
 export function getRosterDataAPI( setRoster: (r: RosterData) => void, year: string, team: string ) {
     const options = {
         method: "GET",
         url: `https://1977-2022-nba-team-rosters-and-schedules.p.rapidapi.com/elements/${team}/${year}/Roster`,
         headers: {
-            "X-RapidAPI-Host": "1977-2022-nba-team-rosters-and-schedules.p.rapidapi.com",
-            "X-RapidAPI-Key": "c0b14705ddmshe3175ea352cb808p17750fjsn3d9fcaa205f9"
+            "X-RapidAPI-Host": nbaRapidHost,
+            "X-RapidAPI-Key": nbaRapidKey
         }
     };
     axios.request(options).then(function (response) {
@@ -23,8 +24,8 @@ export function getScheduleDataAPI( setSchedule: (s: ScheduleData) => void, year
         method: "GET",
         url: `https://1977-2022-nba-team-rosters-and-schedules.p.rapidapi.com/elements/${team}/${year}/Schedule`,
         headers: {
-            "X-RapidAPI-Host": "1977-2022-nba-team-rosters-and-schedules.p.rapidapi.com",
-            "X-RapidAPI-Key": "c0b14705ddmshe3175ea352cb808p17750fjsn3d9fcaa205f9"
+            "X-RapidAPI-Host": nbaRapidHost,
+            "X-RapidAPI-Key": nbaRapidKey
         }
     };
     axios.request(options).then(function (response) {
