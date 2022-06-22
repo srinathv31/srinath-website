@@ -1,5 +1,6 @@
 import { Avatar } from "@mui/material";
 import { deepPurple } from "@mui/material/colors";
+import EmphasisWord from "../components/EmphasisWord";
 import styles from "../styles/Home.module.css";
 
 export default function About(): JSX.Element {
@@ -12,9 +13,11 @@ export default function About(): JSX.Element {
                         {"Hi, again 👋 I'm"}<div className={styles.nameHeader}>Srinath Venkatesh</div>
                     </h1>
                     <p>
-                        A passionate creator and Founder of Vital. 
+                        A passionate creator and Founder of the mobile app <EmphasisWord word="Vital"/>. 
                         In order to turn my ideas into realities, I learned technologies such as
-                        React / React Native / Typescript / Nodejs. I also learned Python and Plotly to
+                        <EmphasisWord word=" React"/> / <EmphasisWord word="React Native "/>
+                         / <EmphasisWord word="Typescript"/> / <EmphasisWord word="NodeJS"/>. I also learned 
+                        <EmphasisWord word=" Python"/> and <EmphasisWord word="Plotly"/> to
                         pursue data projects.
                     </p>
                 </div>

@@ -1,0 +1,18 @@
+.socialMenu ul {
+    list-style: none;
+    position: relative;
+}
+.socialMenu li {
+    font-size: 50px;
+    display: inline-block;
+    padding: 10px;
+    margin-right: 20px;
+    margin-left: 20px;
+    transition: 300ms;
+}
+.socialMenu li:hover {
+    color: crimson;
+}
+.contactModal {
+    background-color: white;
+}

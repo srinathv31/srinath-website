@@ -1,11 +1,14 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useEffect, useContext } from "react";
 import styles from "../styles/Home.module.css";
 import { DarkModeToggleSwitch } from "./DarkModeToggleSwitch";
+import { FaGithub } from "react-icons/fa";
+import { globalPropsContext } from "./ContextHooks/GlobalPropsContext";
 
 export default function MainMenu(): JSX.Element {
-    const [isDarkModeToggle, setIsDarkModeToggle] = useState<boolean>(false);
+    const { setIsDarkModeToggle, isDarkModeToggle } = useContext(globalPropsContext);
+
     // Dark Mode Toggle
     useEffect(() => {
         const mainPage = document.getElementsByTagName("body");
@@ -70,7 +73,8 @@ export default function MainMenu(): JSX.Element {
                     <Link href={"/experience"}><a className={styles.menuLink}>Experience</a></Link>
                 </li> */}
                 <li>
-                    <a className={styles.menuLink} href="https://github.com/srinathv31" target={"_blank"} rel="noreferrer">Github</a>
+                    <a className={styles.menuLink} href="https://github.com/srinathv31" target={"_blank"} rel="noreferrer">Github <span style={{ fontSize: 25 }}><FaGithub/></span>
+                    </a>
                 </li>
                 <li>
                     <Link href={"/about"}><a className={styles.menuLink}>About</a></Link>
