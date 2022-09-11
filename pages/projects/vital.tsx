@@ -1,5 +1,4 @@
 import styles from "../../styles/Projects.module.css";
-import Image from "next/image";
 
 export default function Vital(): JSX.Element {
     return(

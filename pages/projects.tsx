@@ -120,7 +120,7 @@ export default function Projects() {
             <Box sx={{ display: "flex", flexWrap: "wrap", minWidth: 300, width: "100%", justifyContent: "space-evenly" }}>
                 {images.map((image) => (
                     <Link key={image.title} 
-                        href={image.title !== "NBA Data API" ? image.projectLink : `projects/${image.projectLink}`}
+                        href={image.projectLink.includes("http") ? image.projectLink : `projects/${image.projectLink}`}
                     >
                         <ImageButton
                             focusRipple

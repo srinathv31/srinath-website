@@ -15,10 +15,10 @@ import { getRosterDataAPI, getScheduleDataAPI } from "../../utilities/apiFunctio
 import { RosterData, ScheduleData } from "../../utilities/interfaces/nbaRoster";
 
 export default function DialogSelect({ setTeam, team, setYear, year, setRoster, setSchedule }: {
-    setTeam: (t: string) => void, team: string,
-    setYear: (y: string) => void, year: string,
-    setRoster: (r: RosterData) => void,
-    setSchedule: (s: ScheduleData) => void
+    setTeam: React.Dispatch<React.SetStateAction<string>>, team: string,
+    setYear: React.Dispatch<React.SetStateAction<string>>, year: string,
+    setRoster: React.Dispatch<React.SetStateAction<RosterData>>,
+    setSchedule: React.Dispatch<React.SetStateAction<ScheduleData>>
 }) {
     const [open, setOpen] = useState(false);
     const [teamYear, setTeamYear] = useState<{ team: string, year: string }>({ team: team, year: year });
