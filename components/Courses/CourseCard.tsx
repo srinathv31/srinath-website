@@ -9,7 +9,7 @@ export default function CourseCard({ course }: {
     return(
         <Link href={`${course.url}`}>
             <div className={courseStyles.courseCard}>
-                <img src={course.img} alt={`${course.name} Image`} height={50} style={{ marginRight: 10 }}/>
+                <img src={course.img} alt={`${course.name} Image`} height={50} />
                 <p>{course.name}</p>
             </div>
         </Link>
