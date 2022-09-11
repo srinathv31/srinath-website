@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import NoDataCard from "../../components/NbaAPI/NoDataCard";
 import PlayerCard from "../../components/NbaAPI/PlayerCard";
 import TeamRosterLabel from "../../components/NbaAPI/TeamRosterLabel";

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { RosterData, ScheduleData } from "../interfaces/nbaRoster";
 
-export function getRosterDataAPI( setRoster: (r: RosterData) => void, year: string, team: string ) {
+export function getRosterDataAPI(setRoster: React.Dispatch<React.SetStateAction<RosterData>>, year: string, team: string) {
     const options = {
         method: "GET",
         url: `https://1977-2022-nba-team-rosters-and-schedules.p.rapidapi.com/elements/${team}/${year}/Roster`,
@@ -18,7 +18,7 @@ export function getRosterDataAPI( setRoster: (r: RosterData) => void, year: stri
     });
 }
 
-export function getScheduleDataAPI( setSchedule: (s: ScheduleData) => void, year: string, team: string ) {
+export function getScheduleDataAPI(setSchedule: React.Dispatch<React.SetStateAction<ScheduleData>>, year: string, team: string) {
     const options = {
         method: "GET",
         url: `https://1977-2022-nba-team-rosters-and-schedules.p.rapidapi.com/elements/${team}/${year}/Schedule`,

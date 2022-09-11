@@ -1,5 +1,3 @@
-import { Avatar } from "@mui/material";
-import { deepPurple } from "@mui/material/colors";
 import EmphasisWord from "../components/EmphasisWord";
 import styles from "../styles/Home.module.css";
 

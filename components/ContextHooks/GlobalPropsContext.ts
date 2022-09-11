@@ -7,5 +7,5 @@ export const globalPropsContext = createContext<GlobalProps>({
 
 interface GlobalProps {
     isDarkModeToggle: boolean,
-    setIsDarkModeToggle: (d: boolean) => void
+    setIsDarkModeToggle: React.Dispatch<React.SetStateAction<boolean>>
 }
