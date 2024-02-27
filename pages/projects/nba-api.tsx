@@ -29,7 +29,7 @@ export default function NbaAPI({ data }: {
         <div className={styles.nbaAPI}>
             <h1>
                 This is my NBA Data API in Action
-                <a href="https://github.com/srinathv31/nba-data-api" target={"_blank"} rel="noreferrer"><span className={styles.gitLink}>{" Source Code"}</span></a>
+                <a href="https://github.com/srinathv31/nba-api-go" target={"_blank"} rel="noreferrer"><span className={styles.gitLink}>{" Source Code"}</span></a>
                 <a href="https://rapidapi.com/happysvstudio/api/1977-2022-nba-team-rosters-and-schedules/" target={"_blank"} rel="noreferrer"><span className={styles.apiLink}>{" RapidAPI.com"}</span></a>
             </h1>
             <div style={{ flexDirection: "row" }}>
