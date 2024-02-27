@@ -7,6 +7,7 @@ import styles from "../../styles/Projects.module.css";
 import { FranchiseYearData, RosterData, ScheduleData } from "../../utilities/interfaces/nbaRoster";
 import GraphSelector from "../../components/NbaAPI/GraphSelector";
 import axios from "axios";
+import { fallbackData } from "../../data/nbaStuff";
 
 export default function NbaAPI({ data }: {
     data: FranchiseYearData
@@ -15,6 +16,14 @@ export default function NbaAPI({ data }: {
     const [year, setYear] = useState<string>("2010");
     const [roster, setRoster] = useState<RosterData>(data.Roster);
     const [schedule, setSchedule] = useState<ScheduleData>(data.Schedule);
+
+    if (!data) {
+        return (
+            <div className={styles.nbaAPI}>
+                <h1>No Data Loaded</h1>
+            </div>
+        );
+    }
 
     return(
         <div className={styles.nbaAPI}>
@@ -62,17 +71,14 @@ export default function NbaAPI({ data }: {
 export async function getStaticProps() {
     const options = {
         method: "GET",
-        url: "https://1977-2022-nba-team-rosters-and-schedules.p.rapidapi.com/elements/LOS%20ANGELES%20LAKERS/2010",
-        headers: {
-            "X-RapidAPI-Host": "1977-2022-nba-team-rosters-and-schedules.p.rapidapi.com",
-            "X-RapidAPI-Key": "c0b14705ddmshe3175ea352cb808p17750fjsn3d9fcaa205f9"
-        }
+        url: "https://nba-api-go-production.up.railway.app/v1/nba/LOS ANGELES LAKERS/2010",
     };
     const data = await axios.request(options).then(response => {
         console.log(response.data);
         return(response.data as FranchiseYearData);
     }).catch(error => {
         console.error(error);
+        return fallbackData;
     });
 
     // Pass data to the page via props

@@ -1,33 +1,52 @@
 import axios from "axios";
 import { RosterData, ScheduleData } from "../interfaces/nbaRoster";
 
-export function getRosterDataAPI(setRoster: React.Dispatch<React.SetStateAction<RosterData>>, year: string, team: string) {
+export async function getTeamData(year: string, team: string) {
     const options = {
         method: "GET",
-        url: `https://1977-2022-nba-team-rosters-and-schedules.p.rapidapi.com/elements/${team}/${year}/Roster`,
+        url: `https://1977-2022-nba-team-rosters-and-schedules.p.rapidapi.com/v1/nba/${team}/${year}`,
         headers: {
-            "X-RapidAPI-Host": "1977-2022-nba-team-rosters-and-schedules.p.rapidapi.com",
-            "X-RapidAPI-Key": "c0b14705ddmshe3175ea352cb808p17750fjsn3d9fcaa205f9"
+            "X-RapidAPI-Key": "c0b14705ddmshe3175ea352cb808p17750fjsn3d9fcaa205f9",
+            "X-RapidAPI-Host": "1977-2022-nba-team-rosters-and-schedules.p.rapidapi.com"
         }
     };
-    axios.request(options).then(function (response) {
+
+    return await axios.request(options).then(function (response) {
         console.log(response.data);
+        return response.data as { Roster: RosterData, Schedule: ScheduleData };
+    }).catch(function (error) {
+        console.error(error);
+        return null;
+    });
+}
+
+export async function getRosterDataAPI(setRoster: React.Dispatch<React.SetStateAction<RosterData>>, year: string, team: string) {
+    console.log(team);
+    console.log(year);
+    const options = {
+        method: "GET",
+        url: `https://1977-2022-nba-team-rosters-and-schedules.p.rapidapi.com/v1/nba/${team}/${year}`,
+        headers: {
+            "X-RapidAPI-Key": "c0b14705ddmshe3175ea352cb808p17750fjsn3d9fcaa205f9",
+            "X-RapidAPI-Host": "1977-2022-nba-team-rosters-and-schedules.p.rapidapi.com"
+        }
+    };
+    const data = await axios.request(options).then(function (response) {
+        console.log(response.data);
+        return response.data;
         setRoster(response.data);
     }).catch(function (error) {
         console.error(error);
     });
+    console.log("🚀 ~ data ~ data:", data);
 }
 
-export function getScheduleDataAPI(setSchedule: React.Dispatch<React.SetStateAction<ScheduleData>>, year: string, team: string) {
+export async function getScheduleDataAPI(setSchedule: React.Dispatch<React.SetStateAction<ScheduleData>>, year: string, team: string) {
     const options = {
         method: "GET",
-        url: `https://1977-2022-nba-team-rosters-and-schedules.p.rapidapi.com/elements/${team}/${year}/Schedule`,
-        headers: {
-            "X-RapidAPI-Host": "1977-2022-nba-team-rosters-and-schedules.p.rapidapi.com",
-            "X-RapidAPI-Key": "c0b14705ddmshe3175ea352cb808p17750fjsn3d9fcaa205f9"
-        }
+        url: `https://nba-api-go-production.up.railway.app/v1/nba/${team}/${year}/Roster`
     };
-    axios.request(options).then(function (response) {
+    const data = await axios.request(options).then(function (response) {
         console.log(response.data);
         setSchedule(response.data);
     }).catch(function (error) {
