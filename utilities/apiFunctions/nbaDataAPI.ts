@@ -13,7 +13,7 @@ export async function getTeamData(year: string, team: string) {
 
     return await axios.request(options).then(function (response) {
         console.log(response.data);
-        return response.data as { Roster: RosterData, Schedule: ScheduleData };
+        return response.data[team][year] as { Roster: RosterData, Schedule: ScheduleData };
     }).catch(function (error) {
         console.error(error);
         return null;
