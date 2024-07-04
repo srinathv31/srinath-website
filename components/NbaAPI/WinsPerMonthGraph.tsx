@@ -5,13 +5,15 @@ import { globalPropsContext } from "../ContextHooks/GlobalPropsContext";
 
 function calculateMonthlyWins(schedule: ScheduleData) {
     const scheduleMonthlyData: { "month": string, "W": number, "L": number }[] = [];
-    Object.values(schedule.games).forEach(game => {
-        const gameMonth = game["Date"].substring(5,8);
-        if (!scheduleMonthlyData.find(item => item.month === gameMonth)) {
-            scheduleMonthlyData.push({ "month": gameMonth, "W": 0, "L": 0 });
-        }
-        const gameResult: "W" | "L" = game["Result"] as "W" | "L";
-        scheduleMonthlyData[scheduleMonthlyData.length - 1][gameResult]++;
+    Object.values(schedule.games).forEach(gamesArr => {
+        gamesArr.forEach(game => {
+            const gameMonth = game["Date"].substring(5,8);
+            if (!scheduleMonthlyData.find(item => item.month === gameMonth)) {
+                scheduleMonthlyData.push({ "month": gameMonth, "W": 0, "L": 0 });
+            }
+            const gameResult: "W" | "L" = game["Result"] as "W" | "L";
+            scheduleMonthlyData[scheduleMonthlyData.length - 1][gameResult]++;
+        });
     });
     return scheduleMonthlyData;
 }

@@ -19,7 +19,8 @@ export interface RosterData {
 export interface ScheduleData {
     url: string,
     games: {
-        [num: string]: Game
+        regular: Game[],
+        playoffs: Game[],
     }
 }
 

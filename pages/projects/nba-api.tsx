@@ -71,11 +71,11 @@ export default function NbaAPI({ data }: {
 export async function getStaticProps() {
     const options = {
         method: "GET",
-        url: "https://nba-api-go-production.up.railway.app/v1/nba/LOS ANGELES LAKERS/2010",
+        url: "https://nba-data-api-cec43665ia-uc.a.run.app/v1/nba/LOS ANGELES LAKERS/2010",
     };
     const data = await axios.request(options).then(response => {
-        console.log(response.data);
-        return(response.data as FranchiseYearData);
+        console.log(response.data["LOS ANGELES LAKERS"]["2010"]);
+        return(response.data["LOS ANGELES LAKERS"]["2010"] as FranchiseYearData);
     }).catch(error => {
         console.error(error);
         return fallbackData;
