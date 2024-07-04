@@ -11,8 +11,9 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { FaBasketballBall } from "react-icons/fa";
-import { getRosterDataAPI, getScheduleDataAPI, getTeamData } from "../../utilities/apiFunctions/nbaDataAPI";
+import { getTeamData } from "../../utilities/apiFunctions/nbaDataAPI";
 import { RosterData, ScheduleData } from "../../utilities/interfaces/nbaRoster";
+import { CircularProgress } from "@mui/material";
 
 export default function DialogSelect({ setTeam, team, setYear, year, setRoster, setSchedule }: {
     setTeam: React.Dispatch<React.SetStateAction<string>>, team: string,
@@ -22,6 +23,7 @@ export default function DialogSelect({ setTeam, team, setYear, year, setRoster, 
 }) {
     const [open, setOpen] = useState(false);
     const [teamYear, setTeamYear] = useState<{ team: string, year: string }>({ team: team, year: year });
+    const [loading, setLoading] = useState<boolean>(false);
 
     const team_list = ["ATLANTA HAWKS", "BOSTON CELTICS", "BROOKLYN NETS", "CHARLOTTE HORNETS", "CHICAGO BULLS", "CLEVELAND CAVALIERS", "DALLAS MAVERICKS", "DENVER NUGGETS", "DETROIT PISTONS", "GOLDEN STATE WARRIORS", "HOUSTON ROCKETS", "INDIANA PACERS", "LOS ANGELES CLIPPERS", "LOS ANGELES LAKERS", "MEMPHIS GRIZZLIES", "MIAMI HEAT", "MILWAUKEE BUCKS", "MINNESOTA TIMBERWOLVES", "NEW ORLEANS PELICANS", "NEW YORK KNICKS", "OKLAHOMA CITY THUNDER", "ORLANDO MAGIC", "PHILADELPHIA 76ERS", "PHOENIX SUNS", "PORTLAND TRAIL BLAZERS", "SACRAMENTO KINGS", "SAN ANTONIO SPURS", "TORONTO RAPTORS", "UTAH JAZZ", "WASHINGTON WIZARDS"];
     const yearList = Array.from({ length: 46 }, (_, i) => i + 1977);
@@ -45,19 +47,24 @@ export default function DialogSelect({ setTeam, team, setYear, year, setRoster, 
     };
     
     const handleGet = async () => {
+        setLoading(true);
         // getRosterDataAPI(setRoster, teamYear.year, teamYear.team);
         // getScheduleDataAPI(setSchedule, teamYear.year, teamYear.team);
         
-        const teamData = await getTeamData(teamYear.year, teamYear.team);
-        if (!teamData) {
-            return;
+        try {
+            const teamData = await getTeamData(teamYear.year, teamYear.team);
+            if (!teamData) {
+                return;
+            }
+            setRoster({ ...teamData.Roster });
+            setSchedule({ ...teamData.Schedule });
+    
+            setTeam(teamYear.team);
+            setYear(teamYear.year);
+            setOpen(false);
+        } finally {
+            setLoading(false);
         }
-        setRoster({ ...teamData.Roster });
-        setSchedule({ ...teamData.Schedule });
-
-        setTeam(teamYear.team);
-        setYear(teamYear.year);
-        setOpen(false);
     };
 
     return (
@@ -66,44 +73,48 @@ export default function DialogSelect({ setTeam, team, setYear, year, setRoster, 
                 Select Team Roster/Data
             </Button>
             <Dialog disableEscapeKeyDown open={open} onClose={handleClose}>
-                <DialogTitle>{"Select the Franchise and the Year's Roster you want to see"}</DialogTitle>
+                {loading ? 
+                    <DialogTitle>Getting the {teamYear.year} {teamYear.team} Data</DialogTitle>
+                    :<DialogTitle>{"Select the Franchise and the Year's Roster you want to see"}</DialogTitle>}
                 <DialogContent>
-                    <Box component="form" sx={{ display: "flex", flexWrap: "wrap" }}>
-                        <FormControl sx={{ m: 1, minWidth: 120 }}>
-                            <InputLabel htmlFor="team-dialog-native">Team</InputLabel>
-                            <Select
-                                value={teamYear.team}
-                                onChange={handleTeam}
-                                input={<OutlinedInput label="Team" id="team-dialog-native" />}
-                            >
-                                {team_list.map((team, index) => {
-                                    return (
-                                        <MenuItem key={index} value={team}>{team}</MenuItem>
-                                    );
-                                })}
-                            </Select>
-                        </FormControl>
-                        <FormControl sx={{ m: 1, minWidth: 120 }}>
-                            <InputLabel id="year-dialog-select-label">Year</InputLabel>
-                            <Select
-                                labelId="year-dialog-select-label"
-                                id="year-dialog-select"
-                                value={teamYear.year}
-                                onChange={handleYear}
-                                input={<OutlinedInput label="Year" />}
-                            >
-                                {yearList.map((year, index) => {
-                                    return (
-                                        <MenuItem key={index} value={year}>{year}</MenuItem>
-                                    );
-                                })}
-                            </Select>
-                        </FormControl>
-                    </Box>
+                    {loading ?
+                        <CircularProgress  />
+                        :<Box component="form" sx={{ display: "flex", flexWrap: "wrap" }}>
+                            <FormControl sx={{ m: 1, minWidth: 120 }}>
+                                <InputLabel htmlFor="team-dialog-native">Team</InputLabel>
+                                <Select
+                                    value={teamYear.team}
+                                    onChange={handleTeam}
+                                    input={<OutlinedInput label="Team" id="team-dialog-native" />}
+                                >
+                                    {team_list.map((team, index) => {
+                                        return (
+                                            <MenuItem key={index} value={team}>{team}</MenuItem>
+                                        );
+                                    })}
+                                </Select>
+                            </FormControl>
+                            <FormControl sx={{ m: 1, minWidth: 120 }}>
+                                <InputLabel id="year-dialog-select-label">Year</InputLabel>
+                                <Select
+                                    labelId="year-dialog-select-label"
+                                    id="year-dialog-select"
+                                    value={teamYear.year}
+                                    onChange={handleYear}
+                                    input={<OutlinedInput label="Year" />}
+                                >
+                                    {yearList.map((year, index) => {
+                                        return (
+                                            <MenuItem key={index} value={year}>{year}</MenuItem>
+                                        );
+                                    })}
+                                </Select>
+                            </FormControl>
+                        </Box>}
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}>Cancel</Button>
-                    <Button onClick={handleGet}>Get Roster</Button>
+                    <Button disabled={loading} onClick={handleClose}>Cancel</Button>
+                    <Button disabled={loading} onClick={handleGet}>Get Roster</Button>
                 </DialogActions>
             </Dialog>
         </div>

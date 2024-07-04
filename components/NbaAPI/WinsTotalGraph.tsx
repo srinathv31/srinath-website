@@ -4,25 +4,37 @@ import { ScheduleData } from "../../utilities/interfaces/nbaRoster";
 import { globalPropsContext } from "../ContextHooks/GlobalPropsContext";
 
 function calculateTotalWins(schedule: ScheduleData) {
-    const scheduleData: { gameNumber: string, winTotal?: { total: number, result: string, year: string }, gameTotal?: number }[] = [];
-    Object.keys(schedule.games).forEach(game => {
-        if (game === "P_1"){
-            scheduleData.push({ gameNumber: "Playoffs" });
-        }
-        const totalGames = (+schedule.games[game]["W"]) + (+schedule.games[game]["L"]);
-        const yearString = schedule.games[game]["Date"].trim().slice(schedule.games[game]["Date"].length - 4);
-        scheduleData.push({ 
-            gameNumber: "Game #: "+game,
-            winTotal: { 
-                total: +schedule.games[game]["W"], 
-                result: schedule.games[game]["Result"],
-                year: yearString
-            }, 
-            gameTotal: totalGames 
+    const scheduleData: { 
+        gameNumber: string, 
+        winTotal?: { total: number, result: string, year: string }, 
+        gameTotal?: number 
+    }[] = [];
+
+    Object.entries(schedule.games).forEach(([type, gamesArr]) => {
+        Object.keys(gamesArr).forEach(game => {
+            if (game === "P_1") {
+                scheduleData.push({ gameNumber: "Playoffs" });
+            }
+
+            const gameData = schedule.games[type as keyof ScheduleData["games"]][+game];
+            const totalGames = (+gameData.W) + (+gameData.L);
+            const yearString = gameData.Date.trim().slice(gameData.Date.length - 4);
+
+            scheduleData.push({ 
+                gameNumber: `Game #: ${type === "playoffs" ? "P_" : ""}` + (Number(game) + 1),
+                winTotal: { 
+                    total: +gameData.W,
+                    result: gameData.Result,
+                    year: yearString
+                },
+                gameTotal: totalGames
+            });
         });
     });
+
     return scheduleData;
 }
+
   
 export default function WinsTotalGraph({ schedule }: {
     schedule: ScheduleData
